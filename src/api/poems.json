@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Dumb Poem 1",
+    "author": "Dumo Author 1",
+    "year": 2017,
+    "text": "THIS IS THE POEM. I LIKE VUEJS.",
+    "genre": ["Happy","Sad"]
+  },  
+  {
+    "title": "Dumb Poem 2",
+    "author": "Dumo Author 2",
+    "year": 2000,
+    "text": "THIS IS THE POEM. I LIKE VUEJS2."
+  }
+]

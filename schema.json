@@ -1,0 +1,36 @@
+{
+  "title": {
+    "description": "Title of the poem",
+    "type": "text"
+  },
+  "author": {
+    "description": "Person who wrote the poem",
+    "type": "text"
+  },
+  "genre": {
+    "description": "Poem genre",
+    "type": "select",
+    "options": [
+      "Happy",
+      "Sad",
+      "Weird"
+    ]
+  },
+  "subject": {
+    "description": "Poem subject",
+    "type": "multiple-select",
+    "options": [
+      "Birds",
+      "Love",
+      "Winter"
+    ]
+  },
+  "year": {
+    "description": "Year the poem was written/published",
+    "type": "number"
+  },
+  "text": {
+    "description": "The actual poem itself",
+    "type": "longtext"
+  }
+}
