@@ -24,8 +24,10 @@ export default new Vuex.Store({
       Vue.http.get('/api/getpoems').then(response => {
         console.log(response.data)
         context.commit('poems', response.data)
+        context.commit('selectedPoem', null)
       }, response => {
         context.commit('poems', [])
+        context.commit('selectedPoem', null)
       })
 
       Vue.http.get('/api/getschema').then(response => {

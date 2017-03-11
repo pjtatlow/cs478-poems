@@ -1,4 +1,11 @@
 const path = require('path')
+var MongoClient = require('mongodb').MongoClient;
+
+// Connection URL
+var url = 'mongodb://localhost:27017/poems';
+
+// Use connect method to connect to the server
+
 
 const handlers = {
   getschema (req, res, next) {
@@ -18,33 +25,34 @@ const handlers = {
     })
   },
   getpoems (req, res, next) {
-    res.json([
-      {
-        '_id': 1,
-        'title': 'Dumb Poem 1',
-        'author': 'Dumo Author 1',
-        'year': 2017,
-        'text': 'THIS IS THE POEM. I LIKE VUEJS.',
-        'genre': 'Happy'
-      },
-      {
-        '_id': 2,
-        'title': 'Dumb Poem 2',
-        'author': 'Dumo Author 2',
-        'year': 2000,
-        'text': 'THIS IS THE POEM. I LIKE VUEJS2.',
-        'subject': ['Birds', 'Winter']
-      }
-    ])
-    next()
+    MongoClient.connect(url, function(err, db) {
+			var collection = db.collection('poems')       
+			collection.find().toArray(function(err,poems) {
+				console.log(poems);
+				res.json(poems);
+      	db.close();
+				next();
+			});
+    });
   },
   addpoem (req, res, next) {
-    console.log('Add:', req.body)
-    res.json(true)
-    next()
+    MongoClient.connect(url, function(err, db) {
+			console.log(req.body)
+			var collection = db.collection('poems')       
+			collection.insertOne(req.body, function(err,poems) {
+				res.json(err === null)
+      	db.close();
+				next();
+			});
+    });
   },
   savepoem (req, res, next) {
     console.log('Save:', req.body)
+    res.json(true)
+    next()
+  },
+  deletepoem (req, res, next) {
+    console.log('Delete:', req.body)
     res.json(true)
     next()
   }

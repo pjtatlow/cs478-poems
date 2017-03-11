@@ -9,11 +9,7 @@
 
 <script>
 export default {
-  name: 'app',
-  created () {
-    console.log(this)
-    this.$store.dispatch('getPoems')
-  }
+  name: 'app'
 }
 </script>
 

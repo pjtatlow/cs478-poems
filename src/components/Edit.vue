@@ -26,9 +26,15 @@
       </select>
 
     </div>
+
     <div class="col-sm-12">
       <button class="btn btn-primary" @click="save">Save</button>
     </div>
+
+    <div class="col-sm-12">
+      <button class="btn btn-danger" @click="delete">Delete</button>
+    </div>
+
   </div>
 </template>
 
@@ -94,9 +100,24 @@ export default {
           values[key2] = this.poem[key2].value
         }
       }
-      this.$http.post('/api/savepoem', {body: values}).then(response => {
+      this.$http.post('/api/savepoem', values).then(response => {
         if (response === true) {
           alert('Poem saved.')
+          this.$store.dispatch('getPoems')
+          this.$route.push('/')
+        } else {
+          alert(response)
+        }
+      })
+    },
+    delete () {
+      var allPoems = this.$store.state.poems
+      var currentIndex = this.$route.params.poem_index
+      var currentPoem = allPoems[currentIndex]
+      this.$http.post('/api/deletepoem', currentPoem).then(response => {
+        if (response === true) {
+          alert('Poem deleted.')
+          this.$store.dispatch('getPoems')
           this.$route.push('/')
         } else {
           alert(response)
@@ -120,3 +141,4 @@ h1, h2 {
   font-weight: normal;
 }
 </style>
+

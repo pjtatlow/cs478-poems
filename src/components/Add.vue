@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'add',
   data () {
@@ -68,10 +70,11 @@ export default {
   },
   methods: {
     save () {
-      this.$http.post('/api/addpoem', {body: this.poem}).then(response => {
-        if (response === true) {
+      this.$http.post('/api/addpoem', this.poem).then(response => {
+        if (response.data === true) {
           alert('Poem added.')
-          this.$route.push('/')
+          this.$store.dispatch('getPoems')
+          router.push('/')
         } else {
           alert(response)
         }

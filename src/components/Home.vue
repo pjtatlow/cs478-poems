@@ -22,7 +22,6 @@ export default {
   },
   computed: {
     existingPoems () {
-      console.log(this.$store.state.poems)
       return this.$store.state.poems
     },
     selectedPoem: {
@@ -32,10 +31,12 @@ export default {
       },
       // setter
       set (newValue) {
-        console.log(newValue)
         this.$store.dispatch('selectPoem', newValue)
       }
     }
+  },
+  created () {
+    this.$store.dispatch('getPoems')
   }
 }
 </script>
