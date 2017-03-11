@@ -32,13 +32,15 @@
     </div>
 
     <div class="col-sm-12">
-      <button class="btn btn-danger" @click="delete">Delete</button>
+      <button class="btn btn-danger" @click="deletePoem">Delete</button>
     </div>
 
   </div>
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'edit',
   data () {
@@ -101,24 +103,24 @@ export default {
         }
       }
       this.$http.post('/api/savepoem', values).then(response => {
-        if (response === true) {
+        if (response.data === true) {
           alert('Poem saved.')
           this.$store.dispatch('getPoems')
-          this.$route.push('/')
+          router.push('/')
         } else {
           alert(response)
         }
       })
     },
-    delete () {
+    deletePoem () {
       var allPoems = this.$store.state.poems
       var currentIndex = this.$route.params.poem_index
       var currentPoem = allPoems[currentIndex]
       this.$http.post('/api/deletepoem', currentPoem).then(response => {
-        if (response === true) {
+        if (response.data === true) {
           alert('Poem deleted.')
           this.$store.dispatch('getPoems')
-          this.$route.push('/')
+          router.push('/')
         } else {
           alert(response)
         }

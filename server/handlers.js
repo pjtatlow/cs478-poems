@@ -47,9 +47,18 @@ const handlers = {
     });
   },
   savepoem (req, res, next) {
-    console.log('Save:', req.body)
-    res.json(true)
-    next()
+    MongoClient.connect(url, function(err, db) {
+			console.log(req.body._id)
+			var collection = db.collection('poems')       
+			collection.updateOne({'_id': req.body._id }, {$set: req.body}, function(err,poems) {
+				res.json(err === null)
+      	db.close();
+				next();
+			});
+    });
+    //console.log('Save:', req.body)
+    //res.json(true)
+    //next()
   },
   deletepoem (req, res, next) {
     console.log('Delete:', req.body)

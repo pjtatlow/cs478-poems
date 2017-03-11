@@ -71,6 +71,7 @@ export default {
   methods: {
     save () {
       this.$http.post('/api/addpoem', this.poem).then(response => {
+        console.log(response)
         if (response.data === true) {
           alert('Poem added.')
           this.$store.dispatch('getPoems')
