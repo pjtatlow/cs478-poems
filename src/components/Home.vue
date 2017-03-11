@@ -3,6 +3,7 @@
     <h2>View/Edit an existing poem</h2>
     <div class="col-sm-6 col-sm-offset-3">
       <select class="form-control" v-model="selectedPoem">
+        <option :value="null">Select a poem</option>
         <option v-for="(poem, index) in existingPoems" :value="index">{{poem.title}}</option>
       </select>
     </div>
@@ -31,7 +32,9 @@ export default {
       },
       // setter
       set (newValue) {
-        this.$store.dispatch('selectPoem', newValue)
+        if (newValue >= 0 && newValue !== null) {
+          this.$store.dispatch('selectPoem', newValue)
+        }
       }
     }
   },

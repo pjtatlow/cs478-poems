@@ -9,7 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 app.use(express.static('dist'))
 
 app.all('/api/:x', function (req, res, next) {
-  console.log(req.params)
   if (handlers[req.params.x]) {
     handlers[req.params.x](req, res, next)
   } else {
@@ -17,6 +16,6 @@ app.all('/api/:x', function (req, res, next) {
   }
 })
 
-app.listen(88, function () {
-  console.log('Listening on 127.0.0.1:88')
+app.listen(8888, function () {
+  console.log('Listening on 127.0.0.1:8888')
 })

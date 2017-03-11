@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-if="poem.title">
-    <h2>Edit {{poem.title.value}}</h2>
+    <h2>Editing "{{poem.title.value}}"</h2>
     <br><br>
     <div class="form-group col-sm-8 col-sm-offset-2" v-for="(item, key) in poem">
       <label :for="key">{{key | capitalize}}</label>
@@ -52,20 +52,16 @@ export default {
   created () {
     this.features = JSON.parse(JSON.stringify(this.$store.state.schema))
     for (var key in this.features) {
-      console.log(key)
       this.features[key].value = null
     }
   },
   computed: {
     poem () {
       var allPoems = this.$store.state.poems
-      console.log('All poems: ', allPoems.length)
       var currentIndex = this.$route.params.poem_index
-      console.log('Current index: ', currentIndex)
       if (allPoems && allPoems.length > currentIndex) {
         var poem = JSON.parse(JSON.stringify(this.$store.state.schema))
         var poemValues = allPoems[currentIndex]
-        console.log('Poem Values', poemValues)
         for (var key in poem) {
           if (poemValues[key]) {
             poem[key].value = poemValues[key]
@@ -77,7 +73,6 @@ export default {
             }
           }
         }
-        console.log('POEM: ', poem)
         return poem
       } else {
         return {}
@@ -108,7 +103,7 @@ export default {
           this.$store.dispatch('getPoems')
           router.push('/')
         } else {
-          alert(response)
+          alert('Something went wrong saving the poem.')
         }
       })
     },
@@ -122,7 +117,7 @@ export default {
           this.$store.dispatch('getPoems')
           router.push('/')
         } else {
-          alert(response)
+          alert('Something went wrong deleting the poem.')
         }
       })
     }

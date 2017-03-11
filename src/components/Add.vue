@@ -47,7 +47,6 @@ export default {
   computed: {
     features () {
       var features = this.schema
-      console.log('FEATURES', features)
       for (var key in features) {
         if (features[key].type === 'multiple-select') {
           features[key].value = []
@@ -71,13 +70,12 @@ export default {
   methods: {
     save () {
       this.$http.post('/api/addpoem', this.poem).then(response => {
-        console.log(response)
         if (response.data === true) {
           alert('Poem added.')
           this.$store.dispatch('getPoems')
           router.push('/')
         } else {
-          alert(response)
+          alert('Something went wrong adding the poem.')
         }
       })
     }
