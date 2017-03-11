@@ -29,7 +29,7 @@
   "rating": {
     "description": "Year the poem was written/published",
     "type": "select",
-    "options": ["Very Bad", "Bad", "Neutral", "Good", "Very Good"]
+    "options": ["Not Rated Yet","Very Bad", "Bad", "Neutral", "Good", "Very Good"]
   },
   "text": {
     "description": "The actual poem itself",
