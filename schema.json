@@ -3,27 +3,24 @@
     "description": "Title of the poem",
     "type": "text"
   },
-  "author": {
-    "description": "Person who wrote the poem",
+  "author_name": {
+    "description": "Name of person who wrote the poem",
     "type": "text"
   },
-  "genre": {
-    "description": "Poem genre",
+  "author_gender": {
+    "description": "Gender of author",
     "type": "select",
-    "options": [
-      "Happy",
-      "Sad",
-      "Weird"
-    ]
+    "options": ["Male","Female"]
   },
-  "subject": {
-    "description": "Poem subject",
-    "type": "multiple-select",
-    "options": [
-      "Birds",
-      "Love",
-      "Winter"
-    ]
+  "author_ethnicity": {
+    "description": "Ethnicity of author",
+    "type": "select",
+    "options": ["North American", "European", "African", "Asian", "Middle Eastern", "Native American", "Hispanic"]
+  },
+  "genre": {
+    "description": "Poem genre. We can add options later.",
+    "type": "select",
+    "options": []
   },
   "year": {
     "description": "Year the poem was written/published",
